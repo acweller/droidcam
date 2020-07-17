@@ -9,8 +9,13 @@ V4L2_LOOPBACK_KO="${V4L2_LOOPBACK_KM}.ko"
 V4L2_LOOPBACK_VERSION="0.0.1"
 DRIVER_LOCATION="/lib/modules/`uname -r`/kernel/drivers/media/video/"
 
-WIDTH="640"
-HEIGHT="480"
+#WIDTH="640"
+#HEIGHT="480"
+#WIDTH="1920"
+#HEIGHT="1080"
+
+WIDTH="1280"
+HEIGHT="720"
 
 check_if_loaded() {
     if lsmod | grep -q $V4L2_LOOPBACK_DC; then
