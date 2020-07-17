@@ -9,8 +9,13 @@ V4L2_LOOPBACK_KO="${V4L2_LOOPBACK_KM}.ko"
 V4L2_LOOPBACK_VERSION="0.0.1"
 DRIVER_LOCATION="/lib/modules/`uname -r`/kernel/drivers/media/video/"
 
-WIDTH="640"
-HEIGHT="480"
+#WIDTH="640"
+#HEIGHT="480"
+#WIDTH="1920"
+#HEIGHT="1080"
+
+WIDTH="1280"
+HEIGHT="720"
 
 check_if_loaded() {
 	if lsmod | grep -q $V4L2_LOOPBACK_DC; then
@@ -77,6 +82,7 @@ add_line() {
 	fi
 }
 
+<<<<<<< master:install.common
 register_video_module_at_boot_time() {
 	if [ -d "/etc/modprobe.d/" ]; then
 		add_line "/etc/modprobe.d/droidcam.conf" "options $V4L2_LOOPBACK_DC width=$WIDTH height=$HEIGHT"
@@ -92,3 +98,14 @@ register_video_module_at_boot_time() {
 		echo "Warning: Unknown distro. Webcam module may not load after a reboot."
 	fi
 }
+=======
+register_module_at_boot_time() {
+    if [ -d "/etc/modules-load.d" ]; then
+        etc_modules_load_d
+    elif [ -e "/etc/modules" ]; then
+        etc_modules
+    else
+        echo "Warning: Unknown distro. Webcam module may not load after a reboot :("
+    fi
+}
+>>>>>>> Adjust Resolution:linux/install.common
